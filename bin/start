@@ -1,0 +1,19 @@
+#!/bin/bash
+
+BINDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+GPSROOT=$(dirname $BINDIR)
+
+echo "Setting GPSROOT to $GPSROOT"
+
+EXEC=$BINDIR/parser
+[ ! -f $EXEC ] && echo "ERROR: $EXEC is not built yet!" && exit 1
+
+echo "Adding $GPSROOT/common to DYLD_LIBRARY_PATH"
+LIBDIR="$GPSROOT/common"
+
+DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$LIBDIR
+
+export GPSROOT
+export DYLD_LIBRARY_PATH
+
+$EXEC $@

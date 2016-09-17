@@ -1,0 +1,17 @@
+package Gps;
+
+message gpgll
+{
+  required uint32 utc_msec = 3;
+
+  required sint32 lat_min_e4 = 4;
+  required sint32 lon_min_e4 = 5;
+
+  enum Status
+  {
+    INVALID = 0;
+    VALID = 1;
+  }
+
+  optional Status status = 6;
+}

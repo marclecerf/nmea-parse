@@ -1,0 +1,29 @@
+package Gps;
+
+message gpgga
+{
+  required uint32 utc_msec = 3;
+
+  required sint32 lat_min_e4 = 4;
+  required sint32 lon_min_e4 = 5;
+
+  enum Fix
+  {
+    INVALID = 0;
+    GPS = 1;
+    DGPS = 2;
+    PPS = 3;
+    RTK = 4;
+    FLOAT_RTK = 5;
+    DEAD_RECKONED = 6;
+    MANUAL = 7;
+    SIMULATED = 8;
+  }
+  optional Fix fix = 6;
+
+  optional uint32 number_of_satellites = 7;
+
+  optional uint32 horizontal_position_dilution = 8;
+
+  optional sint32 altitude_msl_m_e1 = 9;
+}
